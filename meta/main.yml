@@ -1,6 +1,3 @@
 ---
 dependencies:
   - role: nginx
-    tags:
-      - burp
-    when: "'backup' in group_names"
