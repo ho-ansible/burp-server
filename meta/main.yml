@@ -1,4 +1,22 @@
 ---
+galaxy_info:
+  author: Sean Ho
+  description: burp backup system (server)
+  company: Anchorlytics Consulting
+  license: MIT
+
+  min_ansible_version: 1.2
+
+  platforms:
+   - name: Debian
+     versions:
+     - stable
+     - 9
+
+  galaxy_tags:
+    - burp
+    - backup
+    - server
+
 dependencies:
   - role: burp
-
