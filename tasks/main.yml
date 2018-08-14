@@ -44,7 +44,7 @@
     owner: "{{ burp_user }}"
     group: "{{ burp_user }}"
     mode: 0750
-  when: "{{ burp_offsite }}"
+  when: burp_offsite
 
 - name: burp | server | offsite backup cron
   tags:
@@ -56,7 +56,7 @@
     minute: "{{ 59 | random(seed=inventory_hostname) }}"
     hour: 3
     job: "{{ burp_conf_dir }}/offsite"
-  when: "{{ burp_offsite }}"
+  when: burp_offsite
 
 - name: burp | server | systemd service
   tags:
