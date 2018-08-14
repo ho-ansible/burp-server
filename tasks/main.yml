@@ -35,16 +35,28 @@
     - "{{ burp_data_dir }}"
     - "{{ burp_pid_dir }}"
 
-- name: burp | server | cron | offsite backup
+- name: burp | server | offsite backup script
+  tags:
+    - script
+  template:
+    src: offsite.j2
+    dest: "{{ burp_conf_dir }}/offsite"
+    owner: "{{ burp_user }}"
+    group: "{{ burp_user }}"
+    mode: 0750
+  when: not not burp_offsite
+
+- name: burp | server | offsite backup cron
   tags:
     - cron
   cron:
     name: 'burp offsite storage cron'
     cron_file: burp_offsite
     user: root
-    minute: 12
+    minute: "{{ 59 | random(seed=inventory_hostname) }}"
     hour: 3
-    job: "touch {{ burp_offsite }}/.t && rsync -PaCHq --delete-after --bwlimit 5M {{ burp_data_dir }} {{ burp_offsite }}"
+    job: "{{ burp_conf_dir }}/offsite"
+  when: not not burp_offsite
 
 - name: burp | server | systemd service
   tags:

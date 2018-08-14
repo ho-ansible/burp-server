@@ -1,0 +1,12 @@
+#! /bin/sh
+# /etc/burp/offsite
+# {{ ansible_managed }}
+# Copy burp data dir to offsite storage
+
+{{ burp_offsite_mount }} {{ burp_offsite }} || exit 1
+
+rsync -quaCH --delete-after --bwlimit 5M {{ burp_data_dir }} {{ burp_offsite }}
+touch {{ burp_offsite }}/.t
+
+{{ burp_offsite_umount }} {{ burp_offsite }}
+
