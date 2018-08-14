@@ -12,6 +12,6 @@ burp_dhparams: ''
 
 # mount point, see template/offsite.j2
 burp_offsite: ''
-# shell command, e.g., 'mnt() { systemctl restart xnbd && mount "$1" }; mnt'
+# shell command, e.g., 'mnt() { systemctl restart xnbd && mount "$1"; }; mnt'
 burp_offsite_mount: ''
 burp_offsite_umount: ''
