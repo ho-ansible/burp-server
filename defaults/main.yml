@@ -10,4 +10,5 @@ burp_ca_name: burp
 burp_restore_clients: []
 burp_dhparams: ''
 
-burp_offsite: '/mnt/offsite'
+# mount point, see template/offsite.j2
+burp_offsite: ''
