@@ -5,10 +5,8 @@
 mode = server
 protocol = 2
 
-address = {{ burp_server }}
-port = {{ burp_port }}
-status_address = {{ burp_server }}
-status_port = {{ burp_status_port }}
+listen = {{ burp_server }}:{{ burp_port }}
+listen_status = {{ burp_server }}:{{ burp_status_port }}
 
 directory = {{ burp_data_dir }}
 pidfile = {{ burp_pid_dir }}/server.pid
