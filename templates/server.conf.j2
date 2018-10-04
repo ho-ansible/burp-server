@@ -6,7 +6,7 @@ mode = server
 protocol = 2
 
 listen = {{ burp_server }}:{{ burp_port }}
-listen_status = 127.0.0.1:{{ burp_status_port }}
+listen_status = {{ burp_server }}:{{ burp_status_port }}
 
 directory = {{ burp_data_dir }}
 pidfile = {{ burp_pid_dir }}/server.pid
