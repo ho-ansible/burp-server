@@ -5,9 +5,3 @@
     name: burp
     state: restarted
 
-- name: daemon-reload burp
-  service:
-    name: burp
-    state: restarted
-    daemon-reload: yes
-

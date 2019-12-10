@@ -64,7 +64,9 @@
   template:
     src: burp.service.j2
     dest: /etc/systemd/system/burp.service
-  notify: daemon-reload burp
+  notify: 
+    - daemon-reload
+    - restart burp
 
 - name: burp | server | service
   tags:

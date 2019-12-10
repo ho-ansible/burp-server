@@ -25,14 +25,7 @@ Only tested on Debian stable, for now.
 
 ## Dependencies
 + [ho-ansible.burp](https://github.com/ho-ansible/burp)
-
-## Example Playbook
-
-```
-- hosts: backup
-  roles:
-    - { role: ho-ansible.burp-server }
-```
++ [ho-ansible.systemd](https://github.com/ho-ansible/systemd)
 
 ## License
 + burp is licensed [AGPLv3](https://burp.grke.org/licence.html).
