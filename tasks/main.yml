@@ -58,12 +58,20 @@
     job: "{{ burp_conf_dir }}/offsite"
   when: not not burp_offsite
 
+- name: burp | systemd service drop-in dir
+  file:
+    path: "/etc/systemd/system/burp.service.d"
+    state: directory
+
 - name: burp | server | systemd service
   tags:
     - systemd
   template:
-    src: burp.service.j2
-    dest: /etc/systemd/system/burp.service
+    src: "{{ item.src }}.j2"
+    dest: "/etc/systemd/system/{{ item.dest | d }}/{{ item.src }}"
+  loop:
+    - { src: burp.service }
+    - { src: iptables.conf, dest: burp.service.d }
   notify: 
     - daemon-reload
     - restart burp
