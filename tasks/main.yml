@@ -1,6 +1,6 @@
 ---
 
-- name: burp | server | unprivileged user
+- name: burp-server | unprivileged user
   tags:
     - user
   user:
@@ -9,7 +9,7 @@
     home: "{{ burp_data_dir }}"
     system: yes
 
-- name: burp | server | config
+- name: burp-server | config
   tags:
     - config
   template:
@@ -22,7 +22,7 @@
     - { src: dhfile.pem, dest: keys }
   notify: restart burp
 
-- name: burp | server | directories
+- name: burp-server | directories
   tags:
     - dir
   file:
@@ -34,8 +34,9 @@
   loop:
     - "{{ burp_data_dir }}"
     - "{{ burp_pid_dir }}"
+  notify: restart burp
 
-- name: burp | server | offsite backup script
+- name: burp-server | offsite backup script
   tags:
     - script
   template:
@@ -46,7 +47,7 @@
     mode: "0750"
   when: not not burp_offsite
 
-- name: burp | server | offsite backup cron
+- name: burp-server | offsite backup cron
   tags:
     - cron
   cron:
@@ -58,25 +59,25 @@
     job: "{{ burp_conf_dir }}/offsite"
   when: not not burp_offsite
 
-- name: burp | systemd service drop-in dir
+- name: burp-server | systemd service dir
   file:
-    path: "/etc/systemd/system/burp.service.d"
+    path: "{{ burp_systemd }}.d"
     state: directory
 
-- name: burp | server | systemd service
+- name: burp-server | systemd service
   tags:
     - systemd
   template:
     src: "{{ item.src }}.j2"
-    dest: "/etc/systemd/system/{{ item.dest | d }}/{{ item.src }}"
+    dest: "/etc/systemd/system/{{ item.dest }}/{{ item.src }}"
   loop:
-    - { src: burp.service }
-    - { src: iptables.conf, dest: burp.service.d }
+    - { src: burp.service, dest: "{{ burp_systemd | dirname }}" }
+    - { src: iptables.conf, dest: "{{ burp_systemd }}.d" }
   notify: 
     - daemon-reload
     - restart burp
 
-- name: burp | server | service
+- name: burp-server | service
   tags:
     - service
   service:

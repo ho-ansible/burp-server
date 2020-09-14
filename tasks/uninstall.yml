@@ -22,5 +22,5 @@
   loop:
     - "{{ burp_conf_dir }}"
     - "{{ burp_data_dir }}"
-    - /etc/systemd/system/burp.service.d
-    - /etc/systemd/system/burp.service
+    - "{{ burp_systemd }}"
+    - "{{ burp_systemd }}.d"
