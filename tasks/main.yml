@@ -2,7 +2,7 @@
 
 - name: burp-server | unprivileged user
   tags:
-    - user
+  - user
   user:
     name: "{{ burp_user }}"
     shell: /bin/false
@@ -11,20 +11,20 @@
 
 - name: burp-server | config
   tags:
-    - config
+  - config
   template:
     src: "{{ item.src }}.j2"
     dest: "{{ burp_conf_dir }}/{{ item.dest }}/{{ item.src }}"
     owner: "{{ burp_user }}"
     mode: "0400"
   loop:
-    - { src: server.conf, dest: "" }
-    - { src: dhfile.pem, dest: keys }
+  - { src: server.conf, dest: "" }
+  - { src: dhfile.pem, dest: keys }
   notify: restart burp
 
 - name: burp-server | directories
   tags:
-    - dir
+  - dir
   file:
     path: "{{ item }}"
     state: directory
@@ -32,8 +32,8 @@
     group: "{{ burp_user }}"
     mode: "0750"
   loop:
-    - "{{ burp_data_dir }}"
-    - "{{ burp_pid_dir }}"
+  - "{{ burp_data_dir }}"
+  - "{{ burp_pid_dir }}"
   notify: restart burp
 
 - include_tasks: offsite_cron.yml
@@ -46,20 +46,20 @@
 
 - name: burp-server | systemd service
   tags:
-    - systemd
+  - systemd
   template:
     src: "{{ item.src }}.j2"
     dest: "/etc/systemd/system/{{ item.dest }}/{{ item.src }}"
   loop:
-    - { src: burp.service, dest: "{{ burp_systemd | dirname }}" }
-    - { src: iptables.conf, dest: "{{ burp_systemd }}.d" }
+  - { src: burp.service, dest: "{{ burp_systemd | dirname }}" }
+  - { src: iptables.conf, dest: "{{ burp_systemd }}.d" }
   notify: 
-    - daemon-reload
-    - restart burp
+  - daemon-reload
+  - restart burp
 
 - name: burp-server | service
   tags:
-    - service
+  - service
   service:
     name: burp
     state: started

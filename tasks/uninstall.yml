@@ -20,7 +20,7 @@
     path: "{{ item }}"
     state: absent
   loop:
-    - "{{ burp_conf_dir }}"
-    - "{{ burp_data_dir }}"
-    - "{{ burp_systemd }}"
-    - "{{ burp_systemd }}.d"
+  - "{{ burp_conf_dir }}"
+  - "{{ burp_data_dir }}"
+  - "{{ burp_systemd }}"
+  - "{{ burp_systemd }}.d"

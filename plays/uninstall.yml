@@ -5,9 +5,9 @@
 - name: burp-server | uninstall
   hosts: backup
   tasks:
-    - include_role:
-        name: burp-server
-        tasks_from: uninstall.yml
-      tags:
-        - burp
-        - backup
+  - include_role:
+      name: burp-server
+      tasks_from: uninstall.yml
+    tags:
+    - burp
+    - backup

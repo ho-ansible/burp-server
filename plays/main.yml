@@ -5,7 +5,7 @@
 - name: burp | backup server
   hosts: backup
   roles:
-    - role: burp-server
-      tags:
-        - burp
-        - backup
+  - role: burp-server
+    tags:
+    - burp
+    - backup

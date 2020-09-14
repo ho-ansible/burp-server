@@ -2,7 +2,7 @@
 
 - name: burp-server | offsite_cron | script
   tags:
-    - script
+  - script
   template:
     src: offsite.j2
     dest: "{{ burp_conf_dir }}/offsite"
@@ -12,7 +12,7 @@
 
 - name: burp-server | offsite_cron | cronjob
   tags:
-    - cron
+  - cron
   cron:
     name: 'burp offsite storage cron'
     cron_file: burp_offsite
