@@ -1,0 +1,11 @@
+#! /usr/bin/env ansible-playbook
+# Configure burp backup server
+# Replace 'backup' with your own inventory group
+---
+- name: burp | backup server
+  hosts: backup
+  roles:
+    - role: burp-server
+      tags:
+        - burp
+        - backup

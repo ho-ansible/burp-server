@@ -1,0 +1,13 @@
+#! /usr/bin/env ansible-playbook
+# Uninstall burp backup server
+# Replace 'backup' with your own inventory group
+---
+- name: burp-server | uninstall
+  hosts: backup
+  tasks:
+    - include_role:
+        name: burp-server
+        tasks_from: uninstall.yml
+      tags:
+        - burp
+        - backup

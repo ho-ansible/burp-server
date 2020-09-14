@@ -25,6 +25,10 @@ Only tested on Debian stable, for now.
   shell commands to mount/unmount the offsite storage.  
   `burp_offsite` is passed as a parameter.
 
+## Playbooks
++ `main.yml`: apply role
++ `uninstall.yml`: remove. Run before removing config from inventory.
+
 ## Dependencies
 + [ho-ansible.burp](https://github.com/ho-ansible/burp)
 + [ho-ansible.systemd](https://github.com/ho-ansible/systemd)

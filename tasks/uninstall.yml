@@ -1,0 +1,26 @@
+---
+#note: doesn't remove burp_user since it might be in use
+
+- name: burp-server | disable services
+  service:
+    name: burp
+    state: stopped
+    enabled: no
+
+- name: burp-server | remove cron
+  tags:
+  - cron
+  cron:
+    name: 'burp offsite storage cron'
+    cron_file: burp_offsite
+    state: absent
+
+- name: burp-server | remove config
+  file:
+    path: "{{ item }}"
+    state: absent
+  loop:
+    - "{{ burp_conf_dir }}"
+    - "{{ burp_data_dir }}"
+    - /etc/systemd/system/burp.service.d
+    - /etc/systemd/system/burp.service
