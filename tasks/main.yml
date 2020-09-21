@@ -49,7 +49,7 @@
   - systemd
   template:
     src: "{{ item.src }}.j2"
-    dest: "/etc/systemd/system/{{ item.dest }}/{{ item.src }}"
+    dest: "{{ item.dest }}/{{ item.src }}"
   loop:
   - { src: burp.service, dest: "{{ burp_systemd | dirname }}" }
   - { src: iptables.conf, dest: "{{ burp_systemd }}.d" }
