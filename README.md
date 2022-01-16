@@ -9,6 +9,7 @@ Only tested on Debian stable, for now.
 ## Role Variables
 + `burp_iface` (default: auto-selected): network interface to bind
   the systemd service to
++ `burp_ip` (default: auto): IP address to listen on
 + `burp_user` (default: burp): unprivileged user to run server as
 + `burp_data_dir` (default: /var/burp): where to store backups
 + `burp_pid_dir` (default: /var/run/burp): where to store PID lockfile

@@ -1,6 +1,7 @@
 ---
 
 burp_iface: "{{ ansible_default_ipv4.interface }}"
+burp_ip: "{{ ansible_default_ipv4.address }}"
 
 burp_user: burp
 burp_data_dir: /var/burp

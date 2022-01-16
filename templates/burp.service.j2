@@ -3,6 +3,7 @@ Description = Burp backup server
 After = local-fs.target
 
 [Service]
+User = burp
 ExecStart = /usr/sbin/burp -c /etc/burp/server.conf -F
 
 [Install]
